@@ -26,14 +26,15 @@ public class ngTestDriver {
 		 */
 		String[] tests = new String[] {
 				// testParm1 = true/false if group should have access
-			"TestTemplate,user,group,parameters",
+			"XLStoCSVTest","TestName","TestGroup"
+			,"c:/Users/JoeDaddy/Downloads/NOAA.xls:main","c:/Users/JoeDaddy/Documents/NOAA.csv",
 				};
 		String suiteName = "";
 		suiteName = "Other";
 		/*
 		 * create suite
 		 */
-		List<XmlSuite> suites = new ArrayList<>();
+		List<XmlSuite> suites = new ArrayList<XmlSuite>();
 		XmlSuite suite = new XmlSuite();
 		suite.setName("NG Testing " + suiteName);
 		System.out.println("Running test suite  " + suiteName);
@@ -42,7 +43,7 @@ public class ngTestDriver {
 		 * for each item in the tests array add a test.
 		 */
 		for (String test : tests) {
-			List<XmlClass> testClasses = new ArrayList<>();
+			List<XmlClass> testClasses = new ArrayList<XmlClass>();
 			System.out.println(test);
 			String[] vals = test.split(",");
 			/*
@@ -58,8 +59,7 @@ public class ngTestDriver {
 			Map<String, String> parameters = new HashMap<String, String>();
 			parameters.put("testName", vals[1]);
 			parameters.put("testGroup", vals[2]);
-			parameters.put("testSchema", vals[3]);
-			String parm1 = vals[4];
+			String parm1 = vals[3];
 			if(vals.length>5) {
 				for(int i=5;i<vals.length;i++) {
 					parm1=parm1+","+vals[i];
