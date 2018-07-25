@@ -13,10 +13,10 @@ import java.util.Properties;
  *
  */
 public class DBSQL {
-	public String dbHost = "ord-qatestdb01";
-	public String dbName = "jobwalker";
-	public String dbUser = "qauser";
-	public String dbPassword = "ClAr1ty!";
+	public String dbHost = "localhost";
+	public String dbName = "Movies";
+	public String dbUser = "JoeDaddy";
+	public String dbPassword = "3foot40";
 	private Connection con = null;
 			
 	
@@ -76,27 +76,26 @@ public DBSQL() {
 
 /**
  * main test driver
- * returns process_master database from jobwalker
+ * returns process_master database from schema
  * @param args
  */
 public static void main(String args[]){
 		
 	DBSQL qatestDB = new DBSQL(
-			"jobwalker"
+			"Movies"
 	);
-	String query = "select * from process_master where start > CURRENT_DATE-3 order by job_id desc";
-	//query = "select * from job";
+	String query = "select * from actors";
 	System.out.println(query);
 	ResultSet rs;
-	Integer jobid;
-	String clientDBName=null;
+	Integer actorId;
+	String actorName=null;
 	try {
 		rs = qatestDB.getDBRow(query);
 		System.out.println("ran query");
 		while (rs.next()) {
-			jobid = rs.getInt("job_id");
-			clientDBName = rs.getString("db_name");
-			System.out.println(jobid+ " " + clientDBName);
+			actorId = rs.getInt("actorID");
+			actorName = rs.getString("actorName");
+			System.out.println(actorId+ " " + actorName);
 		} //end while
 	} catch (SQLException  e) {
 		System.out.println("ERR "+query);
